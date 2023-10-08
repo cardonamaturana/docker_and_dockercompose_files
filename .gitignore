@@ -281,4 +281,6 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-# End of https://www.toptal.com/developers/gitignore/api/intellij,intellij+all,intellij+iml,git,gitbook,maven
+# End of https://www.toptal.com/developers/gitignore/api/intellij,intellij+all,intellij+iml,git,gitbook,maven!/practica-docker-compose-SENA/PRÁCTICA DOCKER COMPOSE.pdf
+
+/practica-docker-compose-SENA/
