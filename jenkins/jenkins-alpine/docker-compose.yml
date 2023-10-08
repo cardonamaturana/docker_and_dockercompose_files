@@ -8,4 +8,4 @@ services:
       - 8182:8080
       - 5001:5000
     volumes:
-      - /personal-store/jenkins/jenkins-alpine:/var/jenkins_home
+      - /personal-store/jenkins/jenkins-alpine:/personal-store/jenkins/jenkins-alpine
