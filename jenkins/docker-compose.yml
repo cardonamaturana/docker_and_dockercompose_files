@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  jenkins_service:
+    container_name: compose-jenkins-service
+    image: jenkins/jenkins:alpine
+    ports:
+      - 8182:8080
+      - 5001:5000
+    volumes:
+      - c:/docker-compose/jenkins-alpine:/var/jenkins_home

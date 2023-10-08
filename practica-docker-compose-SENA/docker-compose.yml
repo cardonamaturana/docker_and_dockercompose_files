@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  crudtestdb:
+    build: ./crud-test-db
+    image: crud-test-db
+    container_name: crudtestdb
+    volumes:
+      - "../crud_test_data:/var/lib/mysql"
+    networks:
+      - crudtest
+    restart: unless-stopped
+
+  crudtestback:
+    build: ./spring-crud-example
+    image: crud-test-back
+    container_name: crudtestback
+    environment:
+      - DATABASE_URL=jdbc:mysql://crudtestdb:3306/test?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    networks:
+      - crudtest
+    restart: unless-stopped
+
+  crudtestfront:
+    build: ./angular-15-crud-example
+    image: crud-test-front
+    container_name: crudtestfront
+    ports:
+      - "8081:8081"
+    networks:
+      - crudtest
+    restart: unless-stopped
+
+networks:
+  crudtest:
+    driver: bridge
