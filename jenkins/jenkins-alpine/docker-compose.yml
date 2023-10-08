@@ -9,4 +9,3 @@ services:
       - 5001:5000
     volumes:
       - /docker-compose/jenkins-alpine:/var/jenkins_home
-      -
