@@ -3,6 +3,7 @@ version: '3'  # Especifica la versión de docker-compose que se está utilizando
 services: # Todos los servicios (contenedores) que se desean ejecutar se definen bajo esta sección.
 
   vault: # Nombre del servicio. Puede ser cualquier cosa, pero en este caso, lo llamamos "vault".
+    container_name: vault-compose
     image: hashicorp/vault  # Especifica la imagen que se va a usar para este servicio.
 
     # Las variables de entorno se establecen con la clave "environment". Estas variables serán pasadas al contenedor cuando se inicie.
