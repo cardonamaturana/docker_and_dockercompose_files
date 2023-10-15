@@ -1,11 +1,20 @@
-version: '3'
+version: '3.7'
 
 services:
   jenkins_service:
-    container_name: compose-jenkins-service
+    container_name: jenkins-compose
     image: jenkins/jenkins:alpine
+    restart: always
     ports:
       - 8182:8080
       - 5001:5000
     volumes:
       - /personal-store/jenkins/jenkins-alpine:/personal-store/jenkins/jenkins-alpine
+    networks:
+      - jenkins-vault
+networks:
+  jenkins-vault:
+    driver: bridge
+    name: jenkins-vault
+
+

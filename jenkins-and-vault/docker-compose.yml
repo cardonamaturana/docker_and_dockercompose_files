@@ -1,9 +1,9 @@
-version: '3'  # Especifica la versión de docker-compose que se está utilizando. '3' es una versión comúnmente usada y moderna.
+version: '3.7'
 
 services: # Todos los servicios (contenedores) que se desean ejecutar se definen bajo esta sección.
 
   vault: # Nombre del servicio. Puede ser cualquier cosa, pero en este caso, lo llamamos "vault".
-    container_name: vault-compose
+    container_name: vault-compose-bridge
     image: hashicorp/vault  # Especifica la imagen que se va a usar para este servicio.
     volumes:
       - /vault-data:/vault/data
@@ -16,13 +16,13 @@ services: # Todos los servicios (contenedores) que se desean ejecutar se definen
     cap_add:
       - IPC_LOCK
     networks:
-      - jenkis-vault
+      - jenkins-vault
 
     # La clave 'ports' se utiliza para mapear puertos desde el contenedor al host. El formato es 'puerto_host:puerto_contenedor'.
     ports:
-      - "8200:8200"
+      - 8300:8200
   jenkins_service:
-    container_name: compose-jenkins-service
+    container_name: compose-jenkins-service--bridge
     image: jenkins/jenkins:alpine
     ports:
       - 8181:8080
@@ -30,7 +30,8 @@ services: # Todos los servicios (contenedores) que se desean ejecutar se definen
     volumes:
       - /windows-personal-store/jenkins/jenkins-alpine:/personal-store/jenkins/jenkins-alpine
     networks:
-      - jenkis-vault
+      - jenkins-vault
 networks:
   jenkins-vault:
+    name: jenkins-vault
     driver: bridge
