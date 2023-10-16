@@ -14,6 +14,7 @@ services:
     # La clave 'cap_add' se utiliza para agregar capacidades al contenedor. En este caso, estamos agregando 'IPC_LOCK' que es necesario para que Vault bloquee la memoria.
     cap_add:
       - IPC_LOCK
+    restart: always
     ports:
       - 8200:8200
     networks:
