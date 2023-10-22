@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  some-docker:
+    image: docker:dind
+    container_name: some-docker
+    privileged: true
+    networks:
+      - some-network-net
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - some-docker-certs-ca:/certs/ca
+      - some-docker-certs-client:/certs/client
+    ports:
+      - 2375:2375
+      - 2376:2376
+networks:
+  some-network-net:
+    external: true
+    name: jenkins-vault
+    driver: bridge
+
+
+volumes:
+  some-docker-certs-ca:
+  some-docker-certs-client:
+
+
