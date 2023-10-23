@@ -1,10 +1,10 @@
 # Utiliza una imagen base de Jenkins LTS
 FROM jenkins/jenkins:lts
 
-# Cambia al usuario root para instalar Docker
+# Cambia al usuario root para instalar Docker y Docker Compose
 USER root
 
-# Instala las dependencias de Docker
+# Instala las dependencias necesarias
 RUN apt-get update && apt-get install -y \
     apt-transport-https \
     ca-certificates \
@@ -20,6 +20,10 @@ RUN echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https:/
 
 # Instala Docker
 RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Instala Docker Compose
+RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
 
 # Cambia al usuario jenkins
 USER jenkins

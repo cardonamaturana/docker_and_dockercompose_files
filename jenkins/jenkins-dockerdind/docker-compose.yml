@@ -2,4 +2,22 @@ version: "3.7"
 
 services:
   jenkins-dockerdind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
     container_name: jenkins-dockerdind
+    volumes:
+      - C:/docker-personal-store/jenkins/jenkins-dockerdind:/var/jenkins_home
+      - C:/docker-personal-store/docker-dind/docker_socket:/var/run/docker.sock
+    ports:
+      - 8181:8080
+      - 5001:5000
+    networks:
+      - jenkins-vault
+    restart: always
+networks:
+  jenkins-vault:
+    external: true
+    name: jenkins-vault
+    driver: bridge
