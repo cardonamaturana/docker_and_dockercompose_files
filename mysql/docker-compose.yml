@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:5.7
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: transport-db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: myuserpassword
+    volumes:
+      - C:/docker-personal-store/mysql:/var/lib/mysql
+    restart: always
+networks:
+  mysql-network:
+    name: mysql-network
+    driver: bridge
